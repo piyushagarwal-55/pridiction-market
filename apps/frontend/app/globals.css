@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* New Color Palette - Vibrant Blue/Purple Theme */
+  --bg-primary: #0f172a;        /* Deep navy blue background */
+  --bg-secondary: #1e293b;      /* Slate blue */
+  --bg-tertiary: #334155;       /* Medium slate */
+  
+  --accent-primary: #3b82f6;    /* Bright blue */
+  --accent-secondary: #8b5cf6;  /* Purple */
+  --accent-tertiary: #06b6d4;   /* Cyan */
+  
+  --text-primary: #f1f5f9;      /* Almost white */
+  --text-secondary: #cbd5e1;    /* Light gray */
+  --text-muted: #94a3b8;        /* Medium gray */
+  
+  --border-primary: #3b82f6;    /* Blue border */
+  --border-secondary: #8b5cf6;  /* Purple border */
+  
+  --success: #10b981;           /* Green */
+  --error: #ef4444;             /* Red */
+  --warning: #f59e0b;           /* Amber */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-[#0f172a] text-[#f1f5f9];
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

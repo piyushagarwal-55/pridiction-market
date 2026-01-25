@@ -1,0 +1,42 @@
+{
+    "name": "sportsbook_monorepo",
+    "private": true,
+    "version": "1.0.0",
+    "scripts": {
+        "dev": "concurrently \"turbo run dev\" \"npm run contracts:dev\"",
+        "build": "turbo run build",
+        "lint": "turbo run lint",
+        "type-check": "turbo run type-check",
+        "sync-abis": "turbo run sync-abis",
+        "frontend": "turbo run dev --filter=frontend",
+        "backend": "turbo run dev --filter=backend",
+        "contracts": "turbo run dev --filter=contracts",
+        "contracts:dev": "cd packages/contracts && npx hardhat node --port 8546",
+        "deploy:contracts": "cd packages/contracts && npx hardhat deploy --network cronos-testnet"
+    },
+    "devDependencies": {
+        "@turbo/gen": "^1.9.5",
+        "concurrently": "^8.2.2",
+        "hardhat": "^3.1.2",
+        "turbo": "latest",
+        "typescript": "^5.5.3"
+    },
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ],
+    "packageManager": "npm@10.2.3",
+    "overrides": {
+        "js-yaml": "^4.1.1",
+        "tmp": "^0.2.4"
+    },
+    "dependencies": {
+        "@react-native-async-storage/async-storage": "^1.24.0",
+        "@reown/appkit": "^1.8.16",
+        "@reown/appkit-adapter-wagmi": "^1.8.16",
+        "@tanstack/react-query": "^5.90.16",
+        "viem": "^2.43.5",
+        "wagmi": "^3.2.0",
+        "web3": "^4.16.0"
+    }
+}

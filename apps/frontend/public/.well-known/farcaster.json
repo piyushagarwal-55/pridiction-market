@@ -1,0 +1,30 @@
+{
+  "frame": {
+    "name": "Bet Bazzar",
+    "version": "1",
+    "iconUrl": "https://pridiction-market-frontend-nfrj.vercel.app/icon.png",
+    "homeUrl": "https://pridiction-market-frontend-nfrj.vercel.app",
+    "imageUrl": "https://pridiction-market-frontend-nfrj.vercel.app/Eden.png",
+    "buttonTitle": "Open mini app",
+    "splashImageUrl": "https://pridiction-market-frontend-nfrj.vercel.app/splash.png",
+    "splashBackgroundColor": "#6200EA",
+    "webhookUrl": "https://pridiction-market-frontend-nfrj.vercel.app/api/webhook",
+    "screenshotUrls": [
+      "https://pridiction-market-frontend-nfrj.vercel.app/Eden.png"
+    ],
+    "subtitle": "Prediction Markets on Monad",
+    "description": "Experience the future of web3 betting",
+    "primaryCategory": "games",
+    "heroImageUrl": "https://pridiction-market-frontend-nfrj.vercel.app/Eden.png",
+    "tagline": "Bet Bazzar",
+    "ogTitle": "Bet Bazzar",
+    "ogDescription": "Experience the future of web3 betting",
+    "ogImageUrl": "https://pridiction-market-frontend-nfrj.vercel.app/Eden.png",
+    "castShareUrl": "https://pridiction-market-frontend-nfrj.vercel.app"
+  },
+  "accountAssociation": {
+    "header": "eyJmaWQiOjI0NTYyNDgsInR5cGUiOiJhdXRoIiwia2V5IjoiMHhmNDIxMkFmNUQxNWY1ODFkYzYwZjNlNUI2MDgxNGMzYTkxMDBhNGRDIn0",
+    "payload": "eyJkb21haW4iOiJwcmlkaWN0aW9uLW1hcmtldC1mcm9udGVuZC1uZnJqLnZlcmNlbC5hcHAifQ",
+    "signature": "agHXYBO5se57nSyX9OW3Fx0OeW0GH80MW4SFqpVqD9wxSBXz2eLzfL2Bnc5GFI52MgmVSmrvaacVNjDK8xadvRs="
+  }
+}

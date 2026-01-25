@@ -1,0 +1,151 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================================
+// MARKETS
+// ============================================================================
+
+model Market {
+  id        String   @id @default(cuid())
+  marketId  String   @unique // Smart contract market ID
+  question  String   // The prediction question
+  status    String   @default("ACTIVE") // ACTIVE, CLOSED, RESOLVED
+  winner    String?  // YES or NO (set on resolution)
+
+  yesPool   BigInt   @default(0) // Total USDT bet on YES (6 decimals)
+  noPool    BigInt   @default(0) // Total USDT bet on NO (6 decimals)
+
+  startDate DateTime @default(now())
+  endDate   DateTime // When market closes to new bets
+
+  contractAddress String // PredictionMarket contract address
+  gnosisSafeAddress String // Where deposits go
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  bets      Bet[]
+  history   BetHistory[]
+
+  @@index([marketId])
+  @@index([status])
+  @@index([endDate])
+}
+
+// ============================================================================
+// BETS
+// ============================================================================
+
+model Bet {
+  id        String   @id @default(cuid())
+  
+  // User & Market
+  walletAddress String // User's wallet address (hashed in frontend, stored as-is here)
+  marketId  String   // FK to Market
+  
+  // Bet Details
+  choice    String   // YES or NO
+  amount    BigInt   // USDT amount (6 decimals, e.g., 5000000 = 5 USDT)
+  betNumber Int      // 1-10 (which bet for this wallet)
+  
+  // Status
+  status    String   @default("CONFIRMED") // PENDING, CONFIRMED, FLAGGED, CLAWED_BACK
+  txHash    String?  // Transaction hash on-chain
+  
+  // Timing
+  createdAt DateTime @default(now())
+  
+  // Relations
+  market    Market   @relation(fields: [marketId], references: [marketId], onDelete: Cascade)
+  history   BetHistory[]
+
+  @@unique([marketId, walletAddress, betNumber]) // Unique bet per wallet per market
+  @@index([walletAddress])
+  @@index([marketId])
+  @@index([status])
+  @@index([createdAt])
+  @@index([choice])
+}
+
+// ============================================================================
+// BET HISTORY - AUDIT TRAIL FOR CLAWBACKS & MANIPULATION
+// ============================================================================
+
+model BetHistory {
+  id        String   @id @default(cuid())
+  
+  // References
+  betId     String   // FK to Bet
+  marketId  String   // FK to Market (for quick lookups)
+  wallet    String   // Wallet address (denormalized)
+  
+  // Action Log
+  action    String   // PLACED, CONFIRMED, FLAGGED, FLAGGED_VELOCITY, FLAGGED_CONCENTRATION, CLAWED_BACK, REFUNDED
+  reason    String?  // Why this action (e.g., "Bet velocity exceeded", "Pool cap exceeded")
+  
+  // For Clawback Tracking
+  clawbackAmount BigInt? // Amount returned to user if clawed back
+  clawbackTxHash String? // Transaction hash of refund
+  
+  createdAt DateTime @default(now())
+  
+  // Relations
+  bet       Bet      @relation(fields: [betId], references: [id], onDelete: Cascade)
+  market    Market   @relation(fields: [marketId], references: [marketId], onDelete: Cascade)
+
+  @@index([betId])
+  @@index([marketId])
+  @@index([wallet])
+  @@index([action])
+  @@index([createdAt])
+}
+
+// ============================================================================
+// WALLET FLAGGING - FOR SYBIL/MANIPULATION DETECTION
+// ============================================================================
+
+model FlaggedWallet {
+  id        String   @id @default(cuid())
+  
+  wallet    String   @unique // Wallet address
+  marketId  String   // Which market was it flagged for
+  reason    String   // Why it's flagged (e.g., "Velocity exceeded", "Suspicious concentration")
+  severity  String   @default("MEDIUM") // LOW, MEDIUM, HIGH, CRITICAL
+  
+  isActive  Boolean  @default(true) // Can be unflagged by admin
+  
+  createdAt DateTime @default(now())
+  unflaggedAt DateTime? // If admin unflagged
+  
+  @@index([wallet])
+  @@index([marketId])
+  @@index([isActive])
+}
+
+// ============================================================================
+// POOL SNAPSHOTS - FOR REAL-TIME UPDATES & ANALYTICS
+// ============================================================================
+
+model PoolSnapshot {
+  id        String   @id @default(cuid())
+  
+  marketId  String   // Which market
+  yesPool   BigInt   // YES pool at this moment
+  noPool    BigInt   // NO pool at this moment
+  totalBets Int      // Total number of bets placed
+  
+  createdAt DateTime @default(now())
+  
+  @@index([marketId])
+  @@index([createdAt])
+}
