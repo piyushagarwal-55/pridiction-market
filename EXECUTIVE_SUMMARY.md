@@ -19,19 +19,21 @@
 ### ✅ What's Actually Working
 
 1. **Binary Prediction Markets**
-   - Smart contract: **COMPLETE** (562 lines)
-   - Users bet YES/NO on outcomes
-   - Pool-based AMM pricing
-   - USDT wagering (5-5000 USDT per bet)
+   - Smart contract: ✅ **DEPLOYED ON MONAD** at `0x7d42BDDc69f58E5C6FF1852Afd6B4c2303227D7B`
+   - Users can bet YES/NO on outcomes right now
+   - Pool-based AMM pricing working
+   - USDT wagering operational (5-5000 USDT per bet)
    - Security: Cooldowns, rate limits, anti-manipulation
 
 2. **Casino Games (4 Games)**
-   - Smart contract: **COMPLETE** (436 lines)
-   - Roulette (0-36, 35:1 payout)
-   - Dice (1-6, 5:1 payout)
-   - Coin Flip (Heads/Tails, 1.95:1)
-   - High/Low Dice (Over/Under, 1.9:1)
+   - Smart contract: ✅ **DEPLOYED ON MONAD** at `0x9d95C1fd002A6d4732F081Fa7ccd7dF9dA0153EF`
+   - **10,000 USDT house bankroll** funded and ready
+   - Roulette (0-36, 35:1 payout) - operational
+   - Dice (1-6, 5:1 payout) - operational
+   - Coin Flip (Heads/Tails, 1.95:1) - operational
+   - High/Low Dice (Over/Under, 1.9:1) - operational
    - Min 1 USDT, Max 1000 USDT
+   - **Provably fair on-chain** - see CASINO_PROVABLY_FAIR.md
 
 3. **AI Auto-Betting Bot**
    - Backend service: **COMPLETE**

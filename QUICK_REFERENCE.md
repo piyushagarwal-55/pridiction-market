@@ -22,13 +22,14 @@
 
 ### ✅ Fully Functional
 
-1. **Smart Contracts (Solidity)**
-   - PredictionMarket.sol - Binary YES/NO betting
-   - Casino.sol - 4 games (Roulette, Dice, CoinFlip, HighLow)
-   - BotSettings.sol - On-chain bot configuration
-   - MarketManager.sol - Position tokens (ERC1155)
-   - Settlement.sol - Payout processing
-   - MockUSDT.sol - Test token
+1. **Smart Contracts (Solidity)** - ✅ **DEPLOYED ON MONAD**
+   - PredictionMarket.sol - `0x7d42BDDc69f58E5C6FF1852Afd6B4c2303227D7B`
+   - Casino.sol - `0x9d95C1fd002A6d4732F081Fa7ccd7dF9dA0153EF` (10k USDT funded)
+   - BotSettings.sol - `0xEBE6E13c31b23347F69c1b31fAdB0335063E224b`
+   - MockUSDT.sol - `0x8c34Bb925340901683C48BDbDc2D211B9C7c6c21`
+   - MarketManager.sol, Settlement.sol, PositionToken.sol
+   - **Network:** Monad Testnet (Chain ID: 10143)
+   - **Status:** Live and operational
 
 2. **AI Auto-Betting Bot**
    - Google Gemini API integration
@@ -61,8 +62,8 @@
 
 ### ❌ Not Working
 
-7. **Smart Contract Deployment**
-   - Compiled but not deployed
+7. ~~**Smart Contract Deployment**~~ ✅ **DEPLOYED ON MONAD TESTNET**
+   - See DEPLOYMENT_VERIFICATION.md for all addresses
 
 8. **Sports Betting**
    - UI exists, mock data only
@@ -336,8 +337,8 @@ npx hardhat deploy --network cronos-testnet
 
 ## 🚨 Known Issues
 
-### Critical
-1. **Contracts not deployed** - Nothing works on blockchain
+### ~~Critical~~
+1. ~~**Contracts not deployed**~~ ✅ **RESOLVED - DEPLOYED ON MONAD**
 2. **Private keys in bot** - Security vulnerability
 3. **No API auth** - Anyone can call endpoints
 

@@ -1175,10 +1175,15 @@ UI Re-renders
 - Redis: Redis Cloud
 
 **Smart Contracts:**
-- ⚠️ **NOT DEPLOYED**
-- Contracts compiled but no deployment scripts run
-- No verified addresses in `.env` files
-- **Target Chains:** Cronos Testnet, Monad Testnet
+- ✅ **DEPLOYED ON MONAD TESTNET** (Chain ID: 10143)
+- PredictionMarket: `0x7d42BDDc69f58E5C6FF1852Afd6B4c2303227D7B`
+- Casino: `0x9d95C1fd002A6d4732F081Fa7ccd7dF9dA0153EF`
+- BotSettings: `0xEBE6E13c31b23347F69c1b31fAdB0335063E224b`
+- MockUSDT: `0x8c34Bb925340901683C48BDbDc2D211B9C7c6c21`
+- Gnosis Safe: `0x3eBA27c0AF5b16498272AB7661E996bf2FF0D1cA`
+- Casino has 10,000 USDT house bankroll
+- **Deployment Date:** January 24-25, 2026
+- **Block Explorer:** https://explorer.testnet.monad.xyz
 
 ### 7.2 Configuration Files
 
@@ -1303,9 +1308,9 @@ npm start
 
 | Feature | Status | Evidence |
 |---------|--------|----------|
-| Smart Contracts | ✅ Complete | 7 contracts, fully implemented |
-| Binary Prediction Markets | 🟡 Partial | Contract done, backend mock data |
-| Casino Games | 🟡 Partial | Contract done, frontend incomplete |
+| Smart Contracts | ✅ **DEPLOYED** | 7 contracts on Monad Testnet |
+| Binary Prediction Markets | ✅ On-Chain | Contract deployed, can place real bets |
+| Casino Games | ✅ On-Chain | Contract deployed with 10k USDT bankroll |
 | AI Auto-Betting Bot | ✅ Complete | Fully implemented end-to-end |
 | Database Schema | ✅ Complete | PostgreSQL schema + migrations |
 | Frontend UI | ✅ Complete | All pages built |
@@ -1318,10 +1323,10 @@ npm start
 
 ### 9.2 Missing/Incomplete Features
 
-1. **Smart Contract Deployment**
-   - Contracts compiled but not deployed
-   - No verified addresses
-   - No testnet interaction
+1. ~~**Smart Contract Deployment**~~ ✅ **RESOLVED**
+   - Contracts deployed and verified on Monad Testnet
+   - Casino has 10,000 USDT house bankroll
+   - See DEPLOYMENT_VERIFICATION.md for details
 
 2. **Backend-Blockchain Integration**
    - Event listeners not implemented
@@ -1442,10 +1447,10 @@ npm start
 
 ### 11.1 Critical Issues
 
-1. **No Smart Contract Deployment**
-   - Severity: 🔴 Critical
-   - Impact: Core functionality unusable
-   - Fix: Deploy contracts to testnet
+1. ~~**No Smart Contract Deployment**~~ ✅ **RESOLVED - Deployed on Monad**
+   - Severity: ✅ Fixed
+   - Status: All contracts deployed and operational on Monad Testnet
+   - Addresses: See DEPLOYMENT_VERIFICATION.md
 
 2. **Private Keys in Bot**
    - Severity: 🔴 Critical
